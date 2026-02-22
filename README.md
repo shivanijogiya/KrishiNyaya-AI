@@ -1,4 +1,4 @@
-#  NyayaAI — AI-Powered Indian Legal Assistant
+#  NyayaAI — AI Powered Indian Legal Assistant
 
 NyayaAI is a **Retrieval-Augmented Generation (RAG)** based legal assistant designed to simplify access to Indian laws and governance information.
 
@@ -31,7 +31,7 @@ Human-friendly Legal Answer
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 NyayaAI
@@ -57,26 +57,30 @@ NyayaAI
 ```
 ---
 
-## ⚙️ Setup Instructions
+##   Setup Instructions
+```bash
+ 1️⃣ Clone Repository
 
-### 1️⃣ Clone Repository
-``
 git clone https://github.com/yourusername/nyayaai.git
 cd nyayaai/backend
+
 2️⃣ Create Virtual Environment
 py -3.11 -m venv venv
 venv\Scripts\activate
+
 3️⃣ Install Dependencies
 pip install fastapi uvicorn
 pip install langchain langchain-community langchain-text-splitters
 pip install sentence-transformers faiss-cpu pypdf
 pip install ollama
-4️⃣ Add Legal PDFs
 
+4️⃣ Add Legal PDFs
+```
 Place all legal documents inside:
 
+```bash
 backend/data/legal_docs/
-
+```
 Example:
 
 Aadhaar Act
@@ -88,27 +92,41 @@ Constitution of India
 UIDAI FAQs
 
 5️⃣ Create Vector Database
+```bash
+
 python app/modules/vector_store.py
+```
+
 
 This will generate:
+```bash
 
 faiss_index/
+```
 6️⃣ Run RAG Query (Without LLM)
+```bash
+
 python app/modules/rag_query.py
+```
+
 7️⃣ Run Full RAG + LLM
 
 Install Ollama:
+```bash
 
 https://ollama.com/download
-
+```
 Download lightweight model:
+```bash
 
 ollama run phi3:mini
-
+```
 Run:
+```bash
 
 python app/modules/rag_ollama.py
-🧠 Tech Stack
+```
+## Tech Stack:
 
 Python
 
@@ -124,22 +142,19 @@ Ollama (Local LLM)
 
 RAG Architecture
 
-🎯 Future Improvements
+## Future Improvements
 
-🎤 Voice input (local language support)
+Voice input (local language support)
 
-🌐 Translation (Hindi / Tamil / Gujarati)
+Translation (Hindi / Tamil / Gujarati)
 
-⚖ Lawyer escalation system
+Lawyer escalation system
 
-💬 Web Chat UI
+Web Chat UI
 
-📱 Mobile interface
+Mobile interface
 
-📌 Project Goal
+## Project Goal
 
 NyayaAI aims to bridge regulatory & governance gaps by making Indian legal information more accessible, understandable, and trustworthy using AI.
 
-👩‍💻 Author
-
-Built with ❤️ as an AI + e-Governance project.
