@@ -210,13 +210,13 @@ Phi-3
 Mistral
 ```
 ### Output format:
-
+```
 1️⃣ Eligibility
 2️⃣ Required Documents
 3️⃣ Application Steps
 4️⃣ Government Authority
 5️⃣ Escalation if Rejected
-
+```
 Step 7 — Translation Layer
 
 Answer translated back to user language:
@@ -272,7 +272,7 @@ Chat Interface
 
 ```
 ### Features:
-
+```
 💬 Chat bubbles
 
 🎤 Voice input
@@ -284,9 +284,9 @@ Chat Interface
 🤖 Live backend answers
 
 🧱 Tech Stack
-
+```
 ### Backend
-
+```
 Python
 
 FastAPI
@@ -312,3 +312,4 @@ Vite
 CSS animations
 
 Lucide Icons
+```
