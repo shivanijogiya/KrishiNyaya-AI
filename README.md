@@ -1,132 +1,283 @@
-#  NyayaAI — AI Powered Indian Legal Assistant
+# 🌾 KrishiNyaya AI — Multilingual RAG Assistant for Indian Farmers
 
-NyayaAI is a **Retrieval-Augmented Generation (RAG)** based legal assistant designed to simplify access to Indian laws and governance information.
+##  Overview
 
-It uses real legal documents (Aadhaar Act, IT Act, Constitution, government FAQs) to retrieve relevant legal context and generate human-friendly answers using a **local LLM (Ollama)**.
+**KrishiNyaya AI** is a Retrieval-Augmented Generation (RAG) based AI assistant designed to help **Indian farmers** understand government schemes, subsidies, eligibility criteria, and agricultural policies in a **simple, trustworthy, and multilingual way**.
+
+The system solves a major real-world problem:
+
+> Government scheme information is scattered across PDFs, portals, circulars, legal documents, and FAQs — written in complex language and difficult for farmers to navigate.
+
+KrishiNyaya AI converts fragmented official data into a **conversation-based assistant** that provides:
+
+- ✅ Citation-backed responses
+- 🌐 Multilingual support
+- 🎤 Audio input capability
+- 📄 PDF + Website + CSV based knowledge
+- ⚡ Fast retrieval using vector databases
+- 🧠 Local LLM generation using Ollama
 
 ---
 
-##  Features
+## Purpose & Goals
 
-- Legal PDF ingestion (Indian Acts & governance docs)
-- Semantic search using FAISS vector database
-- RAG pipeline for accurate legal retrieval
-- Local LLM inference using Ollama (no API billing)
-- FastAPI backend ready for chatbot integration
-- Focus on e-Governance & legal accessibility
+### Problem Statement
+
+Small and marginal farmers struggle because:
+
+- Information is spread across multiple government portals
+- Legal and scheme language is complex
+- Scheme eligibility is unclear
+- Updates are frequent and hard to track
+
+Existing agri-chatbots focus on farming tips — not **policy interpretation**.
 
 ---
 
-## Architecture
-User Question
+### Project Goals
+
+KrishiNyaya AI aims to:
+
+1. Provide **accurate scheme guidance** grounded in official documents.
+2. Generate **workflow-based answers**:
+   - Eligibility
+   - Required documents
+   - Application steps
+   - Authority contacts
+   - Escalation paths
+3. Reduce hallucinations using strict RAG grounding.
+4. Support multiple Indian languages.
+5. Enable voice-based interactions for accessibility.
+
+---
+
+## ⭐ What Makes This Project Different
+
+Unlike normal chatbots:
+
+✔ Uses **Multimodal RAG** (PDF + Web + CSV + Text)  
+✔ Uses **FAISS Vector Search** for fast retrieval  
+✔ Uses **Ollama local LLM** (offline capable)  
+✔ Includes **Hallucination Safety Layer**  
+✔ Supports multilingual translation pipeline  
+✔ Designed specifically for Indian governance & agriculture
+
+---
+
+## High-Level Architecture
+
+``
+User Question / Voice
+↓
+Language Detection + Translation
 ↓
 FAISS Vector Search (RAG)
 ↓
-Relevant Legal Context
+Relevant Official Context
 ↓
-Ollama LLM (Phi3 / Mistral)
+Ollama LLM (TinyLlama / Phi / Mistral)
 ↓
-Human-friendly Legal Answer
-
+Structured Workflow Answer
+↓
+Translate back to User Language
+↓
+Frontend Chat UI
+``
 
 ---
 
-## Project Structure
+## 🗂️ Project Structure
 
-```
-NyayaAI
+``
+KrishiNyaya
 │
 ├── backend
 │ ├── app
 │ │ └── modules
-│ │ ├── document_loader.py
-│ │ ├── vector_store.py
-│ │ ├── rag_query.py
-│ │ └── rag_ollama.py
+│ │ ├── document_loader.py # PDF + text loading
+│ │ ├── web_loader.py # Website ingestion
+│ │ ├── vector_store.py # FAISS index creation
+│ │ ├── rag_query.py # Retrieval testing
+│ │ ├── rag_ollama.py # Main RAG pipeline
+│ │ └── audio_input.py # Voice recognition
 │ │
 │ ├── data
-│ │ └── legal_docs
-│ │ ├── aadhaar_act.pdf
-│ │ ├── it_act_2000.pdf
-│ │ └── constitution_india.pdf
+│ │ └── scheme_docs
+│ │ ├── central_schemes
+│ │ ├── state_schemes
+│ │ ├── faq
+│ │ ├── eligibility_tables
+│ │ ├── workflows
+│ │ └── website_text
 │ │
-│ └── faiss_index
+│ ├── faiss_index # Vector database
+│ └── app/main.py # FastAPI backend
 │
-└── frontend (planned)
+├── frontend
+│ ├── src/components
+│ │ ├── LandingPage.tsx
+│ │ └── ChatInterface.tsx
+│ │
+│ └── public
+│ └── images / UI assets
+│
+└── README.md
+``
 
-```
 ---
 
-##   Setup Instructions
-```bash
- 1️⃣ Clone Repository
+## ⚙️ Backend — What It Actually Does
 
-git clone https://github.com/yourusername/nyayaai.git
-cd nyayaai/backend
+The backend is the **core intelligence** of this project.
 
-2️⃣ Create Virtual Environment
-py -3.11 -m venv venv
-venv\Scripts\activate
+### Step 1 — Data Ingestion
 
-3️⃣ Install Dependencies
-pip install fastapi uvicorn
-pip install langchain langchain-community langchain-text-splitters
-pip install sentence-transformers faiss-cpu pypdf
-pip install ollama
+Sources include:
 
-4️⃣ Add Legal PDFs
-```
-Place all legal documents inside:
+- Government PDFs
+- Scheme guidelines
+- FAQ documents
+- CSV eligibility tables
+- Official websites
 
-```bash
-backend/data/legal_docs/
-```
-Example:
+Loaded using:
 
-Aadhaar Act
+- `PyPDFLoader`
+- `BeautifulSoup`
+- CSV → text converters
 
-IT Act 2000
+---
 
-Constitution of India
+### Step 2 — Text Chunking
 
-UIDAI FAQs
+Documents are split into semantic chunks using:
 
-5️⃣ Create Vector Database
-```bash
+```python
+RecursiveCharacterTextSplitter
 
-python app/modules/vector_store.py
-```
+Purpose:
 
+Improve retrieval accuracy
 
-This will generate:
-```bash
+Reduce hallucination
 
-faiss_index/
-```
-6️⃣ Run RAG Query (Without LLM)
-```bash
+Faster embedding search
 
-python app/modules/rag_query.py
-```
+Step 3 — Embeddings
 
-7️⃣ Run Full RAG + LLM
+Each chunk is converted into embeddings using:
 
-Install Ollama:
-```bash
+sentence-transformers/all-MiniLM-L6-v2
+Step 4 — Vector Database (FAISS)
 
-https://ollama.com/download
-```
-Download lightweight model:
-```bash
+Embeddings stored in:
 
-ollama run phi3:mini
-```
-Run:
-```bash
+FAISS Vector Store
 
-python app/modules/rag_ollama.py
-```
-## Tech Stack:
+Allows:
+
+Semantic similarity search
+
+Fast retrieval from large datasets
+
+Step 5 — RAG Pipeline
+
+When user asks a question:
+
+Translate → English
+
+Retrieve top relevant chunks
+
+Apply safety confidence check
+
+Construct structured prompt
+
+Send context to Ollama model
+
+Step 6 — LLM Generation (Ollama)
+
+Local LLM generates response:
+
+Examples:
+
+TinyLlama
+
+Phi-3
+
+Mistral
+
+Output format:
+
+1️⃣ Eligibility
+2️⃣ Required Documents
+3️⃣ Application Steps
+4️⃣ Government Authority
+5️⃣ Escalation if Rejected
+Step 7 — Translation Layer
+
+Answer translated back to user language:
+
+Hindi
+
+Gujarati
+
+Tamil
+
+Telugu
+
+Kannada
+
+Bengali
+
+etc.
+
+🎤 Audio & Multilingual Support
+
+Voice pipeline:
+
+Speech → Text
+        ↓
+Translate → English
+        ↓
+RAG Search
+        ↓
+Generate Answer
+        ↓
+Translate Back
+
+Libraries:
+
+SpeechRecognition
+
+Deep Translator
+
+🌐 Frontend Overview
+Landing Page
+
+Language tags
+
+Project introduction
+
+Animated visuals
+
+Navigate to chat
+
+Chat Interface
+
+Features:
+
+💬 Chat bubbles
+
+🎤 Voice input
+
+🌐 Language-aware responses
+
+📋 Copy responses
+
+🤖 Live backend answers
+
+🧱 Tech Stack
+Backend
 
 Python
 
@@ -134,27 +285,22 @@ FastAPI
 
 LangChain
 
-FAISS Vector Database
+FAISS
 
 Sentence Transformers
 
-Ollama (Local LLM)
+Ollama
 
-RAG Architecture
+BeautifulSoup
 
-## Future Improvements
+Deep Translator
 
-Voice input (local language support)
+Frontend
 
-Translation (Hindi / Tamil / Gujarati)
+React + TypeScript
 
-Lawyer escalation system
+Vite
 
-Web Chat UI
+CSS animations
 
-Mobile interface
-
-## Project Goal
-
-NyayaAI aims to bridge regulatory & governance gaps by making Indian legal information more accessible, understandable, and trustworthy using AI.
-
+Lucide Icons
