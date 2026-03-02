@@ -4,6 +4,7 @@
 
 **KrishiNyaya AI** is a Retrieval-Augmented Generation (RAG) based AI assistant designed to help **Indian farmers** understand government schemes, subsidies, eligibility criteria, and agricultural policies in a **simple, trustworthy, and multilingual way**.
 
+
 The system solves a major real-world problem:
 
 > Government scheme information is scattered across PDFs, portals, circulars, legal documents, and FAQs — written in complex language and difficult for farmers to navigate.
@@ -248,12 +249,14 @@ Generate Answer
 Translate Back
 ```
 Libraries:
-
+```
 SpeechRecognition
 
 Deep Translator
+```
+## Frontend Overview
 
-🌐 Frontend Overview
+```
 Landing Page
 
 Language tags
@@ -266,7 +269,8 @@ Navigate to chat
 
 Chat Interface
 
-Features:
+```
+### Features:
 
 💬 Chat bubbles
 
@@ -279,7 +283,8 @@ Features:
 🤖 Live backend answers
 
 🧱 Tech Stack
-Backend
+
+### Backend
 
 Python
 
@@ -297,7 +302,7 @@ BeautifulSoup
 
 Deep Translator
 
-Frontend
+### Frontend
 
 React + TypeScript
 
