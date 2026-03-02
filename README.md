@@ -10,12 +10,12 @@ The system solves a major real-world problem:
 
 KrishiNyaya AI converts fragmented official data into a **conversation-based assistant** that provides:
 
-- ✅ Citation-backed responses
-- 🌐 Multilingual support
-- 🎤 Audio input capability
-- 📄 PDF + Website + CSV based knowledge
-- ⚡ Fast retrieval using vector databases
-- 🧠 Local LLM generation using Ollama
+-  Citation-backed responses
+-  Multilingual support
+-  Audio input capability
+-  PDF + Website + CSV based knowledge
+-  Fast retrieval using vector databases
+-  Local LLM generation using Ollama
 
 ---
 
@@ -66,7 +66,7 @@ Unlike normal chatbots:
 
 ## High-Level Architecture
 
-``
+```
 User Question / Voice
 ↓
 Language Detection + Translation
@@ -82,13 +82,13 @@ Structured Workflow Answer
 Translate back to User Language
 ↓
 Frontend Chat UI
-``
+```
 
 ---
 
 ## 🗂️ Project Structure
 
-``
+```
 KrishiNyaya
 │
 ├── backend
@@ -122,11 +122,11 @@ KrishiNyaya
 │ └── images / UI assets
 │
 └── README.md
-``
+```
 
 ---
 
-## ⚙️ Backend — What It Actually Does
+##  Backend — What It Actually Does
 
 The backend is the **core intelligence** of this project.
 
@@ -162,16 +162,17 @@ Improve retrieval accuracy
 Reduce hallucination
 
 Faster embedding search
-
+```
 Step 3 — Embeddings
 
 Each chunk is converted into embeddings using:
-
+```
 sentence-transformers/all-MiniLM-L6-v2
+```
 Step 4 — Vector Database (FAISS)
 
 Embeddings stored in:
-
+```
 FAISS Vector Store
 
 Allows:
@@ -179,11 +180,11 @@ Allows:
 Semantic similarity search
 
 Fast retrieval from large datasets
-
+```
 Step 5 — RAG Pipeline
 
 When user asks a question:
-
+```
 Translate → English
 
 Retrieve top relevant chunks
@@ -193,30 +194,31 @@ Apply safety confidence check
 Construct structured prompt
 
 Send context to Ollama model
-
+```
 Step 6 — LLM Generation (Ollama)
 
 Local LLM generates response:
 
 Examples:
-
+```
 TinyLlama
 
 Phi-3
 
 Mistral
-
-Output format:
+```
+### Output format:
 
 1️⃣ Eligibility
 2️⃣ Required Documents
 3️⃣ Application Steps
 4️⃣ Government Authority
 5️⃣ Escalation if Rejected
+
 Step 7 — Translation Layer
 
 Answer translated back to user language:
-
+```
 Hindi
 
 Gujarati
@@ -230,9 +232,9 @@ Kannada
 Bengali
 
 etc.
-
-🎤 Audio & Multilingual Support
-
+```
+### Audio & Multilingual Support
+```
 Voice pipeline:
 
 Speech → Text
@@ -244,7 +246,7 @@ RAG Search
 Generate Answer
         ↓
 Translate Back
-
+```
 Libraries:
 
 SpeechRecognition
