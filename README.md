@@ -1,4 +1,4 @@
-# 🌾 KrishiNyaya AI — Multilingual RAG Assistant for Indian Farmers
+#  KrishiNyaya AI — Multilingual RAG Assistant for Indian Farmers
 
 ##  Overview
 
