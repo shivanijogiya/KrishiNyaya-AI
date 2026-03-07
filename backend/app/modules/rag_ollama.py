@@ -2,6 +2,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 import ollama
 from deep_translator import GoogleTranslator
+from langdetect import detect
 
 
 def ask_legal_question(query):
@@ -10,20 +11,20 @@ def ask_legal_question(query):
     # 1️⃣ Detect user language
     # -----------------------------------
     try:
-        detected_lang = GoogleTranslator(
-            source='auto',
-            target='en'
-        ).detect(query)
+        detected_lang = detect(query)
     except:
         detected_lang = "en"
 
     # -----------------------------------
     # 2️⃣ Translate → English
     # -----------------------------------
-    translated_query = GoogleTranslator(
-        source='auto',
-        target='en'
-    ).translate(query)
+    try:
+        translated_query = GoogleTranslator(
+            source='auto',
+            target='en'
+        ).translate(query)
+    except:
+        translated_query = query
 
     # -----------------------------------
     # 3️⃣ Load Vector DB
@@ -48,10 +49,14 @@ def ask_legal_question(query):
 
     if docs_with_score[0][1] > 1.2:
         warning_msg = "⚠ I cannot find enough official scheme information."
-        return GoogleTranslator(
-            source='en',
-            target=detected_lang
-        ).translate(warning_msg)
+
+        try:
+            return GoogleTranslator(
+                source='en',
+                target=detected_lang
+            ).translate(warning_msg)
+        except:
+            return warning_msg
 
     docs = [doc for doc, score in docs_with_score]
 
@@ -122,10 +127,13 @@ Question:
     # -----------------------------------
     # 9️⃣ Translate back to user language
     # -----------------------------------
-    final_answer = GoogleTranslator(
-        source='en',
-        target=detected_lang
-    ).translate(final_english_output)
+    try:
+        final_answer = GoogleTranslator(
+            source='en',
+            target=detected_lang
+        ).translate(final_english_output)
+    except:
+        final_answer = final_english_output
 
     return final_answer
 

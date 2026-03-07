@@ -101,10 +101,24 @@ export default function ChatInterface({ onNavigateBack, language }: ChatInterfac
     }
 
     if (!recognitionRef.current) {
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.lang = "en-IN";
-      recognitionRef.current.interimResults = false;
-    }
+  recognitionRef.current = new SpeechRecognition();
+
+  // ⭐ Detect speech language from selected UI language
+  const langMap: any = {
+    English: "en-IN",
+    Hindi: "hi-IN",
+    Gujarati: "gu-IN",
+    Tamil: "ta-IN",
+    Telugu: "te-IN",
+    Kannada: "kn-IN",
+    Malayalam: "ml-IN",
+    Bengali: "bn-IN",
+    Punjabi: "pa-IN"
+  };
+
+  recognitionRef.current.lang = langMap[language] || "en-IN";
+  recognitionRef.current.interimResults = false;
+}
 
     const recognition = recognitionRef.current;
 

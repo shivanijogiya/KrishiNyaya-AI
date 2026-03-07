@@ -78,7 +78,23 @@ export default function LandingPage({ onNavigateToChat, onLanguageSelect }: Land
             }}
             onMouseEnter={() => setHoveredLang(lang.code)}
             onMouseLeave={() => setHoveredLang(null)}
-            onClick={() => onLanguageSelect(lang.name)}
+            onClick={() => {
+              const languageMap: Record<string, string> = {
+                'हिन्दी': 'Hindi',
+                'ગુજરાતી': 'Gujarati',
+                'ਪੰਜਾਬੀ': 'Punjabi',
+                'தமிழ்': 'Tamil',
+                'తెలుగు': 'Telugu',
+                'ಕನ್ನಡ': 'Kannada',
+                'മലയാളം': 'Malayalam',
+                'বাংলা': 'Bengali'
+              };
+
+              const selected = languageMap[lang.name] || 'English';
+
+                onLanguageSelect(selected);
+                onNavigateToChat();
+              }}
           >
             <span className={`block px-4 py-2 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 ${
               hoveredLang === lang.code 
