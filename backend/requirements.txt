@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+langchain
+langchain-community
+sentence-transformers
+faiss-cpu
+pypdf
+beautifulsoup4
+requests
+deep-translator
+ollama
