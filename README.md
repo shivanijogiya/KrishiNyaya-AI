@@ -313,3 +313,27 @@ CSS animations
 
 Lucide Icons
 ```
+### Core Innovations
+Multilingual RAG Pipeline
+Workflow-Based AI Responses
+Hallucination Prevention Layer
+Voice + AI + Translation Integration
+Government Scheme Intelligence System
+
+### 🌍 Real-World Impact
+Helps farmers understand schemes easily
+Reduces dependency on agents/middlemen
+Prevents misinformation
+Improves scheme adoption
+Enables digital inclusion
+
+#### 🚀 Future Scope
+Image-based query (crop/land docs)
+Offline mobile app
+Integration with govt APIs
+Personalized scheme recommendation
+
+### 👤 Author
+
+Shivani Jogiya
+KrishiNyaya AI Project
