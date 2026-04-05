@@ -53,7 +53,7 @@ KrishiNyaya AI aims to:
 
 ---
 
-## ⭐ What Makes This Project Different
+##  What Makes This Project Different
 
 Unlike normal chatbots:
 
