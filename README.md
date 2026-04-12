@@ -273,17 +273,17 @@ Chat Interface
 ```
 ### Features:
 ```
-💬 Chat bubbles
+ Chat bubbles
 
-🎤 Voice input
+ Voice input
 
-🌐 Language-aware responses
+ Language-aware responses
 
-📋 Copy responses
+ Copy responses
 
-🤖 Live backend answers
+ Live backend answers
 
-🧱 Tech Stack
+ Tech Stack
 ```
 ### Backend
 ```
