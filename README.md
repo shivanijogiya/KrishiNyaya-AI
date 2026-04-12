@@ -327,7 +327,7 @@ Prevents misinformation
 Improves scheme adoption
 Enables digital inclusion
 
-#### 🚀 Future Scope
+####  Future Scope
 Image-based query (crop/land docs)
 Offline mobile app
 Integration with govt APIs
