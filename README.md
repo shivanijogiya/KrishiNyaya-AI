@@ -320,7 +320,7 @@ Hallucination Prevention Layer
 Voice + AI + Translation Integration
 Government Scheme Intelligence System
 
-### 🌍 Real-World Impact
+### Real-World Impact
 Helps farmers understand schemes easily
 Reduces dependency on agents/middlemen
 Prevents misinformation
