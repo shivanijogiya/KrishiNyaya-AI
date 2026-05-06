@@ -8,7 +8,7 @@
 The system solves a major real-world problem:
 
 
-> Government scheme information is scattered across PDFs, portals, circulars, legal documents, and FAQs written in complex language and difficult for farmers to navigate.
+Government scheme information is scattered across PDFs, portals, circulars, legal documents, and FAQs written in complex language and difficult for farmers to navigate.
 
 KrishiNyaya AI converts fragmented official data into a **conversation-based assistant** that provides:
 
